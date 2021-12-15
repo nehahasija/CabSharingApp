@@ -1,7 +1,8 @@
 # CabSharingApp
 * Create CabSharing Android Clone App
-* Fetch and show nearby cabs on Google Map
 * Fetch and show user current location
+* Fetch and show nearby cabs on Google Map as pins
+* Clicking on a particular cab will take user to its detail view where user can rent that cab
 
 ## ARCHITECTURE
 This Project uses the MVVM repository pattern along with retrofit for building. A Repository helps to manage data updates in the local database or remote data stores.
