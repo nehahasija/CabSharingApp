@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.fragment.CabDetailFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/top_constraintLayout">
+
+    <ImageView
+        android:id="@+id/cab_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/vehicle_image_height"
+        android:layout_marginStart="@dimen/vehicle_iv_margin"
+        android:layout_marginEnd="@dimen/vehicle_iv_margin"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tab_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cab_image_view">
+
+        <TableRow
+            android:background="@android:color/background_light"
+            android:padding="@dimen/tb_row_padding">
+
+            <TextView
+                android:id="@+id/cab_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/tv_padding"
+                android:text="@string/cab_title" />
+
+            <TextView
+                android:id="@+id/cab_type_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:paddingEnd="@dimen/tv_padding"
+                android:text="@tools:sample/full_names" />
+        </TableRow>
+
+        <TableRow
+            android:background="@android:color/darker_gray"
+            android:padding="@dimen/tb_row_padding">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/tv_padding"
+                android:text="@string/cab_licence_plate" />
+
+            <TextView
+                android:id="@+id/licence_plate_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:paddingEnd="@dimen/tv_padding"
+                android:text="@tools:sample/full_names" />
+        </TableRow>
+
+        <TableRow
+            android:background="@android:color/background_light"
+            android:padding="@dimen/tb_row_padding">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/tv_padding"
+                android:text="@string/cab_fuel_level" />
+
+            <TextView
+                android:id="@+id/fuel_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:paddingEnd="@dimen/tv_padding"
+                android:text="@tools:sample/full_names" />
+        </TableRow>
+        <TableRow
+            android:background="@android:color/darker_gray"
+            android:padding="@dimen/tb_row_padding">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/tv_padding"
+                android:text="@string/cab_pricing_time" />
+
+            <TextView
+                android:id="@+id/pricing_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:paddingEnd="@dimen/tv_padding"
+                android:text="@tools:sample/full_names" />
+        </TableRow>
+        <TableRow
+            android:background="@android:color/background_light"
+            android:padding="@dimen/tb_row_padding">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/tv_padding"
+                android:text="@string/cab_price_parking" />
+
+            <TextView
+                android:id="@+id/parking_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:paddingEnd="@dimen/tv_padding"
+                android:text="@tools:sample/full_names" />
+        </TableRow>
+        <TableRow
+            android:background="@android:color/darker_gray"
+            android:padding="@dimen/tb_row_padding">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/tv_padding"
+                android:text="@string/cab_address" />
+
+            <TextView
+                android:id="@+id/cab_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:paddingEnd="@dimen/tv_padding"
+                android:text="@tools:sample/full_names" />
+        </TableRow>
+        <TableRow
+            android:background="@android:color/background_light"
+            android:padding="@dimen/tb_row_padding">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/tv_padding"
+                android:text="@string/cab_city" />
+
+            <TextView
+                android:id="@+id/cab_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:paddingEnd="@dimen/tv_padding"
+                android:text="@tools:sample/full_names" />
+        </TableRow>
+        <TableRow
+            android:background="@android:color/darker_gray"
+            android:padding="@dimen/tb_row_padding">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/tv_padding"
+                android:text="@string/cab_clean_status" />
+
+            <Button
+                android:id="@+id/cab_clean_status"
+                android:layout_width="@dimen/toggle_width"
+                android:layout_height="@dimen/toggle_height"
+                android:textColor="@color/white"
+                android:background="@drawable/roundedbutton"/>
+        </TableRow>
+        <TableRow
+            android:background="@android:color/background_light"
+            android:padding="@dimen/tb_row_padding">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/tv_padding"
+                android:text="@string/cab_damage_status" />
+
+           <Button
+               android:id="@+id/isCab_damaged"
+               android:layout_width="@dimen/toggle_width"
+               android:layout_height="@dimen/toggle_height"
+               android:textColor="@color/white"
+               android:background="@drawable/roundedbutton"/>
+        </TableRow>
+        <TableRow
+            android:background="@android:color/darker_gray"
+            android:padding="@dimen/tb_row_padding">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/tv_padding"
+                android:text="@string/cab_damage_desc" />
+
+            <TextView
+                android:id="@+id/cab_damage_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:paddingEnd="@dimen/tv_padding"
+                android:text="@tools:sample/full_names" />
+        </TableRow>
+        <TableRow
+            android:background="@android:color/background_light"
+            android:padding="@dimen/tb_row_padding">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/tv_padding"
+                android:text="@string/cab_isActivated" />
+
+            <Button
+                android:id="@+id/cab_isActivated"
+                android:layout_width="@dimen/toggle_width"
+                android:layout_height="@dimen/toggle_height"
+                android:textColor="@color/white"
+                android:background="@drawable/roundedbutton"
+              />
+        </TableRow>
+    </TableLayout>
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rentNow_fab"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tab_layout"
+            android:layout_marginBottom="40dp"
+            android:layout_marginTop="@dimen/tb_row_padding"
+            android:layout_marginLeft="@dimen/tb_row_padding"
+            android:text="@string/cab_rental_fab"
+            app:layout_constraintStart_toStartOf="parent"></com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

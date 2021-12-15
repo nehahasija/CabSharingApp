@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">CabSharingApp</string>
+    <!-- user permissions text -->
+    <string name="enable_gps">Enable GPS</string>
+    <string name="required_for_this_app">Required for this app</string>
+    <string name="enable_now">Enable Now</string>
+    <string name="location_permission_not_granted">Location Permission not granted</string>
+    <string name="current_location">Current Location</string>
+    <!--  user-layout texts -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cab_title">Title</string>
+    <string name="cab_licence_plate">Licence</string>
+    <string name="cab_fuel_level">Fuel-Level</string>
+    <string name="cab_pricing_time">Pricing</string>
+    <string name="cab_price_parking">Parking Price</string>
+    <string name="cab_address">Address</string>
+    <string name="cab_city">City</string>
+    <string name="cab_damage_status">Damage Status</string>
+    <string name="cab_clean_status">Clean Status</string>
+    <string name="cab_damage_desc">Damage Description</string>
+    <string name="cab_isActivated">Activated</string>
+    <string name="cab_rental_fab">Rent Now</string>
+    <!-- User-friendly messages-->
+    <string name="cab_rental_successful_msg">Your Cab is rented successfully.</string>
+    <string name="cab_rental_error_msg">Your Cab is not booked. Please try again.</string>
+
+    <string name="error_msg">Something went wrong. Please try again.</string>
+    <string name="current_loc">Current Location</string>
+    </resources>

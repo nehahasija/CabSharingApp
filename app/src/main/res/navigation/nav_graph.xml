@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mapsFragment">
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.yuvapps.cabsharing.ui.main.fragment.MapsFragment"
+        tools:layout="@layout/fragment_maps">
+
+        <action
+            android:id="@+id/action_mapsFragment_to_cabDetailFragment"
+            app:destination="@id/cabDetailFragment">
+            <argument
+                android:name="carId"
+                app:argType="integer"
+                android:defaultValue="0" />
+        </action>
+
+    </fragment>
+    <fragment
+        android:id="@+id/cabDetailFragment"
+        android:name="com.yuvapps.cabsharing.ui.main.fragment.CabDetailFragment"
+        tools:layout="@layout/fragment_cab_detail"
+        app:popUpTo="@id/mapsFragment">
+        <argument
+            android:name="carId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <action
+            android:id="@+id/action_cabDetailFragment_to_MapsFragment"
+            app:destination="@id/mapsFragment">
+
+        </action>
+    </fragment>
+</navigation>
