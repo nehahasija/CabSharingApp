@@ -21,7 +21,7 @@ For ViewModels, we use the out-of-the-box @HiltViewModel annotation that injects
 * Every feature is done in a different branch so that it will be easy to follow.
 * Clone the project, the `master` branch has the latest code.
 * This App uses the Google API Key for Maps. Get the API key from the Google Cloud Developer console after enabling the Maps feature for your project. Refer this [link](https://developers.google.com/maps/documentation/directions/get-api-key). And put that key in the local.properties file in your project:
-Your local.properties will like below:
+Your gradle.properties will like below:
 ```
 sdk.dir=PATH_TO_ANDROID_SDK_ON_YOUR_LOCAL_MACHINE    
 apiKey=YOUR_API_KEY
