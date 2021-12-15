@@ -10,6 +10,8 @@ apply plugin: "io.gitlab.arturbosch.detekt"
 
 
 android {
+    def localProperties = new Properties()
+    localProperties.load(new FileInputStream(rootProject.file("local.properties")))
     compileSdk rootProject.ext.compileSdkVersion
 
     defaultConfig {
@@ -18,8 +20,8 @@ android {
         targetSdk rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
-        buildConfigField "String", "Base_URL", "${project.Base_URL}"
-        buildConfigField "String", "google_maps_key", "${project.API_KEY}"
+        buildConfigField "String", "Base_URL", localProperties['Base_URL']
+        buildConfigField "String", "google_maps_key", localProperties['API_KEY']
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
