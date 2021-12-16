@@ -2,6 +2,7 @@ package com.yuvapps.cabsharing.data.di
 
 import com.yuvapps.cabsharing.BuildConfig
 import com.yuvapps.cabsharing.data.api.ApiService
+import com.yuvapps.cabsharing.utils.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,8 +31,8 @@ object NetworkModule {
         OkHttpClient
             .Builder()
             .addInterceptor(httpLoggingInterceptor)
-            .readTimeout(15,TimeUnit.SECONDS)
-            .connectTimeout(15,TimeUnit.SECONDS)
+            .readTimeout(Constants.RETROFIT_TIMEOUT,TimeUnit.SECONDS)
+            .connectTimeout(Constants.RETROFIT_TIMEOUT,TimeUnit.SECONDS)
             .build()
 
     @Singleton

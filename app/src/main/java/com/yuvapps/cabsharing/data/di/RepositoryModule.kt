@@ -18,6 +18,4 @@ object RepositoryModule {
     @Singleton
     fun providesLocationUpdateUseCase(@ApplicationContext context: Context)= LocationUpdatesUseCase(
         context = context)
-
-
 }

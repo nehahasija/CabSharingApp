@@ -23,7 +23,9 @@
     <!-- User-friendly messages-->
     <string name="cab_rental_successful_msg">Your Cab is rented successfully.</string>
     <string name="cab_rental_error_msg">Your Cab is not booked. Please try again.</string>
+    <string name="current_loc">Current Location</string>
 
     <string name="error_msg">Something went wrong. Please try again.</string>
-    <string name="current_loc">Current Location</string>
+    <string name="error_no_title">No Title</string>
+    <string name="error_NA">Not Available</string>
     </resources>

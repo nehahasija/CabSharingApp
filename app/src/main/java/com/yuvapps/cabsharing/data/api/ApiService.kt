@@ -16,7 +16,7 @@ interface ApiService {
    suspend fun getCabs(): Response<List<CabResponse>>
 
    @GET("cars/{carId}")
-   suspend fun getCab(@Path("carId") Id:Int): Response<CabResponse>
+   suspend fun getCab(@Path("carId") id:Int): Response<CabResponse>
 
    @Headers("Authorization: Bearer df7c313b47b7ef87c64c0f5f5cebd6086bbb0fa")
    @POST

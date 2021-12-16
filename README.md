@@ -1,7 +1,9 @@
 # CabSharingApp
 * Create CabSharing Android Clone App
 * Fetch and show user current location
-* Fetch and show nearby cabs on Google Map as pins
+* Fetch and show nearby cabs on Google Map as car pins
+* Clicking my location icon navigates map to current loc marker*
+* SwipeTorefresh shows nearby cabs on Maps again*
 * Clicking on a particular cab will take user to its detail view where user can rent that cab
 
 ## ARCHITECTURE
@@ -26,8 +28,11 @@ Your gradle.properties will like below:
 sdk.dir=PATH_TO_ANDROID_SDK_ON_YOUR_LOCAL_MACHINE    
 apiKey=YOUR_API_KEY
 ```
+* Code quality checks using  Detekt
 
 ## OPTIMIZATIONS
+
+
 * Battery optimization- You can specify location accuracy using the setPriority() method, passing one of the following values as the argument. Here we are using PRIORITY_HIGH_ACCURACY but you can also use PRIORITY_BALANCED_POWER_ACCURACY provides accurate location while optimizing for power depending on your requirement.
 * Code Optimization- We have used features like Kotlin coroutines, and view binding for our code to be optimized but there is always a scope to improvise.
    You can always add two way dataBinding to avoid boiler plate code. Here we are not using data binding because app does not have many UI screens where data needs to be updated.

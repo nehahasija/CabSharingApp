@@ -1,4 +1,5 @@
 package com.yuvapps.cabsharing.data.repository
+import com.yuvapps.cabsharing.data.api.LocationUpdatesUseCase
 import com.yuvapps.cabsharing.data.api.RemoteDataSource
 import com.yuvapps.cabsharing.data.api.base.BaseApiResponse
 import com.yuvapps.cabsharing.data.model.CabRentalResponse
@@ -13,7 +14,7 @@ import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 @ActivityRetainedScoped
-class CabRepository @Inject constructor(private val remoteDataSource: RemoteDataSource) :
+class CabRepository @Inject constructor(private val remoteDataSource: RemoteDataSource,private val webService:LocationUpdatesUseCase) :
     BaseApiResponse() {
 
     suspend fun getNearbyCabs(): Flow<NetworkResponse<List<CabResponse>>> {
@@ -32,6 +33,9 @@ class CabRepository @Inject constructor(private val remoteDataSource: RemoteData
         return flow<NetworkResponse<CabRentalResponse>> {
             emit(safeApiCall { remoteDataSource.bookRentalCab(cabResponse) })
         }.flowOn(Dispatchers.IO)
+    }
+    fun getLocation(): Flow<LocationModel> {
+        return webService.fetchUpdates()
     }
 
 }

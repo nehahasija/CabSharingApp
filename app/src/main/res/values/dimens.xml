@@ -10,4 +10,6 @@
     <dimen name="toggle_height">40dp</dimen>
     <dimen name="vehicle_image_height">200dp</dimen>
     <dimen name="vehicle_iv_margin">32dp</dimen>
+
+    <dimen name="bitmap_width">50dp</dimen>
 </resources>

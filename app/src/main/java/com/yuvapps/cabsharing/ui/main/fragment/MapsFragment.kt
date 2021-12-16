@@ -3,6 +3,7 @@ package com.yuvapps.cabsharing.ui.main.fragment
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,13 +41,13 @@ class MapsFragment : Fragment(),
 
     private val nearbyCabMarkerList = arrayListOf<Marker>()
     private lateinit var mMap: GoogleMap
+    private lateinit var currentLatlng: LatLng
 
 
     private val callback = OnMapReadyCallback { googleMap ->
         mMap = googleMap
         mMap.getUiSettings().setZoomControlsEnabled(true)
         mMap.setOnMarkerClickListener(this)
-        setUpNavigationObserver()
         setUpLocationUpdatesObserver()
     }
 
@@ -87,16 +88,20 @@ class MapsFragment : Fragment(),
         navController = view.findNavController()
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
+        setUpNavigationObserver()
         requestLocationPermission()
-    }
 
+        _binding.swipeContainer.setOnRefreshListener {
+            animateMapToFirstNearbyCab()
+        }
+    }
 
     private fun onLocationModel(locationModel: LocationModel) {
         val latLng = LatLng(locationModel.latitude, locationModel.longitude)
+        currentLatlng = latLng
         enableMyLocationOnMap()
         moveCamera(latLng)
         animateCamera(latLng)
-        addCurrentLocMarkerAndGet(latLng).showInfoWindow()
         setUpNearbyCabsObservers()
     }
 
@@ -115,6 +120,12 @@ class MapsFragment : Fragment(),
         }
     }
 
+    private fun animateMapToFirstNearbyCab() {
+        moveCamera(nearbyCabMarkerList[0].position)
+        animateCamera(nearbyCabMarkerList[0].position)
+        _binding.swipeContainer.isRefreshing=false
+    }
+
     private fun setUpNearbyCabsObservers() {
         viewModel.getNearbyCabs().observe(viewLifecycleOwner) { response ->
             when (response) {
@@ -130,7 +141,7 @@ class MapsFragment : Fragment(),
 
                         val latLng = LatLng(lat, lng)
                         if (!nearByCabLocations.containsKey(carId))
-                            nearByCabLocations.put(carId, Pair(title, latLng))
+                            nearByCabLocations[carId] = Pair(title, latLng)
                     }
                     showNearbyCabs(nearByCabLocations)
 
@@ -149,7 +160,7 @@ class MapsFragment : Fragment(),
     private fun showNearbyCabs(latLngList: HashMap<Int, Pair<String, LatLng>>) {
         nearbyCabMarkerList.clear()
         mMap.clear()
-
+        addCurrentLocMarkerAndGet(currentLatlng)
         var firstLatLng: LatLng? = null
         for (latLng in latLngList) {
             if (firstLatLng == null) {
@@ -204,7 +215,14 @@ class MapsFragment : Fragment(),
         if (marker != null) {
             marker.remove()
         }
-        marker = mMap?.addMarker(
+
+        if(title.isNullOrBlank())
+            marker = mMap.addMarker(
+                MarkerOptions().position(latLng).flat(true).
+                icon(bitmapDescriptor).title(getString(R.string.error_no_title))
+            )!!
+        else
+        marker = mMap.addMarker(
             MarkerOptions().position(latLng).flat(true).icon(bitmapDescriptor).title(title)
         )!!
         marker.tag = MarkerTag(carID, false)
@@ -212,16 +230,11 @@ class MapsFragment : Fragment(),
 
     }
 
-    private fun addCurrentLocMarkerAndGet(latLng: LatLng): Marker {
-        val marker = mMap.addMarker(
-            MarkerOptions().position(latLng).flat(true)
-                .icon(BitmapDescriptorFactory.defaultMarker()).title(
-                    getString(
-                        R.string.current_location
-                    )
-                )
-        )
-        return marker!!
+    private fun addCurrentLocMarkerAndGet(latLng: LatLng) {
+        mMap.addMarker(
+            MarkerOptions().position(latLng).title(latLng.toString()
+            )
+        )?.showInfoWindow()
     }
 
     private fun showSnackBar(message: String) {
@@ -245,12 +258,15 @@ class MapsFragment : Fragment(),
                 navController.navigate(actionargs)
             }
         }
+        else{
+            marker.showInfoWindow()
+        }
         return true
     }
 
     private fun removeAllOtherMarkers(selectedMarker: Marker) {
 
-        if (nearbyCabMarkerList != null) {
+        if (nearbyCabMarkerList.size>0) {
             for (marker in nearbyCabMarkerList) {
                 if (marker.id != selectedMarker.id) {
                     marker.remove()

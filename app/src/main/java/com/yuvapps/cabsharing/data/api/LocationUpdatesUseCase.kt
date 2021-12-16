@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 class LocationUpdatesUseCase @Inject constructor(context: Context) {
 
-    private val mContext:Context=context
+    private val mContext: Context = context
     private val fusedLocationClient = getFusedLocationProviderClient(context)
 
     fun fetchUpdates(): Flow<LocationModel> = callbackFlow {
@@ -33,15 +33,13 @@ class LocationUpdatesUseCase @Inject constructor(context: Context) {
             override fun onLocationResult(locationResult: LocationResult) {
                 super.onLocationResult(locationResult)
                 val location = locationResult.lastLocation
-                    val userLocation = LocationModel(
-                        latitude = location.latitude,
-                        longitude = location.longitude,
-                    )
-                    this@callbackFlow.trySend(userLocation).isSuccess
-
+                val userLocation = LocationModel(
+                    latitude = location.latitude,
+                    longitude = location.longitude,
+                )
+                this@callbackFlow.trySend(userLocation).isSuccess
 
             }
-
         }
 
         if (ActivityCompat.checkSelfPermission(

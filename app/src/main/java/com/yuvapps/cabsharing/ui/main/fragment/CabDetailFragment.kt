@@ -1,4 +1,5 @@
 package com.yuvapps.cabsharing.ui.main.fragment
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
-import coil.load
+import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.yuvapps.cabsharing.R
 import com.yuvapps.cabsharing.data.model.CabResponse
@@ -85,22 +86,31 @@ class CabDetailFragment : Fragment() {
         response:
         NetworkResponse.Success<CabResponse>
     ) {
-        _binding.cabImageView.load(
-            response.data?.vehicleTypeImageUrl!!
-        ){
-            placeholder(R.mipmap.ic_launcher)
-        }
-        _binding.cabTypeValue.text = response.data.title
-        _binding.licencePlateValue.text = response.data.licencePlate
-        _binding.pricingTime.text = response.data.pricingTime
-        _binding.parkingPrice.text = response.data.pricingParking
-        _binding.fuelLevel.text = response.data.fuelLevel.toString()
-        _binding.cabAddress.text = response.data.address.plus(", ").plus(response.data.zipCode)
-        _binding.cabCity.text = response.data.city
-        _binding.cabCleanStatus.text = response.data.isClean.toString()
-        _binding.isCabDamaged.text = response.data.isDamaged.toString()
-        _binding.cabDamageDescription.text = response.data.damageDescription
-        _binding.cabIsActivated.text = response.data.isActivatedByHardware.toString()
+        Glide.with(requireContext()).load(response.data?.vehicleTypeImageUrl!!)
+            .placeholder(R.drawable.ic_car).into(_binding.cabImageView)
+
+        if (response.data.title.isNullOrEmpty()) {
+            _binding.cabTitle.text = getString(R.string.error_no_title)
+
+        } else
+            _binding.cabTitle.text = response.data.title
+        _binding.licencePlateValue.text = response.data.licencePlate ?: getString(R.string.error_NA)
+        _binding.pricingTime.text = response.data.pricingTime ?: getString(R.string.error_NA)
+        _binding.parkingPrice.text = response.data.pricingParking ?: getString(R.string.error_NA)
+        _binding.fuelLevel.text =
+            response.data.fuelLevel.toString() ?: getString(R.string.error_NA)
+        _binding.cabAddress.text =
+            response.data.address.plus(", ").plus(response.data.zipCode)
+                ?: getString(R.string.error_NA)
+        _binding.cabCity.text = response.data.city ?: getString(R.string.error_NA)
+        _binding.cabCleanStatus.text =
+            response.data.isClean.toString() ?: getString(R.string.error_NA)
+        _binding.isCabDamaged.text =
+            response.data.isDamaged.toString() ?: getString(R.string.error_NA)
+        _binding.cabDamageDescription.text =
+            response.data.damageDescription ?: getString(R.string.error_NA)
+        _binding.cabIsActivated.text =
+            response.data.isActivatedByHardware.toString() ?: getString(R.string.error_NA)
 
         _binding.rentNowFab.setOnClickListener { view ->
             viewModel.bookQuickRental(response.data)

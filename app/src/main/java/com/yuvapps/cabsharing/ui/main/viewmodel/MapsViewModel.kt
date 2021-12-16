@@ -10,7 +10,6 @@ import com.yuvapps.cabsharing.data.model.CabResponse
 import com.yuvapps.cabsharing.data.model.LocationModel
 import com.yuvapps.cabsharing.data.model.NetworkResponse
 import com.yuvapps.cabsharing.data.repository.CabRepository
-import com.yuvapps.cabsharing.data.repository.LocationRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -19,7 +18,6 @@ import javax.inject.Inject
 @HiltViewModel
 class MapsViewModel @Inject constructor(
     private val repository: CabRepository,
-    private val locationUpdatesUseCase: LocationRepository,
     application: Application
 ) : AndroidViewModel(application) {
 
@@ -65,7 +63,7 @@ class MapsViewModel @Inject constructor(
     // The awaitClose block is then called and our location update callback is removed.
     fun onLocationPermissionGranted() {
         viewModelScope.launch {
-            locationUpdatesUseCase.getLocation().collect { values ->
+            repository.getLocation().collect { values ->
                 _locationModel.value = values
             }
         }
